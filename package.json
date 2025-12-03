@@ -1,0 +1,63 @@
+{
+  "name": "neurolingo-brain-health-test",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A web application for the NeuroLingo Smart Brain Health Test.",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "cross-env NODE_OPTIONS=--openssl-legacy-provider react-scripts start",
+    "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "keywords": [
+    "brain",
+    "health",
+    "test",
+    "neuro",
+    "cognitive"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "chart.js": "^3.9.1",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^2.5.1",
+    "react": "^17.0.2",
+    "react-chartjs-2": "^4.3.1",
+    "react-dom": "^17.0.2",
+    "react-scripts": "^4.0.3",
+    "web-vitals": "^2.1.4"
+  },
+  "devDependencies": {
+    "cross-env": "^10.0.0",
+    "eslint": "^7.32.0",
+    "eslint-plugin-react": "^7.27.1"
+  },
+  "homepage": ".",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/yourusername/neurolingo-brain-health-test.git"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/neurolingo-brain-health-test/issues"
+  }
+}

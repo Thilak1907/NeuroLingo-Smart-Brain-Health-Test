@@ -1,0 +1,385 @@
+/* Dashboard Layout Styles */
+.dashboard-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  overflow: hidden;
+}
+
+/* Top Row: Welcome, Profile, Language */
+.dashboard-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 25px;
+  background-color: white;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.welcome-section h2 {
+  font-size: 24px;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.role-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  background-color: #e6f0ff;
+  color: #3a7bd5;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.profile-language-section {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.profile-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.profile-avatar {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid #e9ecef;
+}
+
+.avatar-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-name {
+  font-weight: 500;
+  color: #333;
+}
+
+.last-login {
+  font-size: 12px;
+  color: #6c757d;
+}
+
+.language-dropdown {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: white;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Dashboard Content Layout */
+.dashboard-content {
+  display: flex;
+  padding: 20px;
+  gap: 20px;
+}
+
+/* Main Tiles Section */
+.main-tiles {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  flex: 3;
+}
+
+.tile {
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  transition: transform 0.2s, box-shadow 0.2s;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.tile:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.tile-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.test-icon {
+  background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+}
+
+.results-icon {
+  background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
+}
+
+.progress-icon {
+  background: linear-gradient(135deg, #84fab0, #8fd3f4);
+}
+
+.alert-icon {
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+}
+
+.tile h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.tile p {
+  color: #6c757d;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.last-test-info {
+  margin-top: 10px;
+  background-color: #f8f9fa;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.score-indicator {
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.score {
+  font-weight: bold;
+  font-size: 18px;
+  color: #3a7bd5;
+}
+
+/* Progress Chart */
+.mini-chart {
+  display: flex;
+  align-items: flex-end;
+  height: 60px;
+  margin: 15px 0;
+  gap: 10px;
+}
+
+.chart-bar {
+  flex: 1;
+  background-color: #3a7bd5;
+  min-height: 10px;
+  border-radius: 3px 3px 0 0;
+  transition: height 0.3s ease;
+}
+
+/* Risk Alerts */
+.risk-level {
+  margin: 15px 0;
+}
+
+.risk-indicator {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.risk-low {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.risk-moderate {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.risk-high {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+/* Side Panel */
+.dashboard-side-panel {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.side-section {
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.side-section h3 {
+  font-size: 16px;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+/* Test History */
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.history-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.history-date {
+  color: #6c757d;
+}
+
+.history-score {
+  font-weight: 500;
+}
+
+/* Knowledge Hub */
+.knowledge-items {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.knowledge-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.knowledge-title {
+  color: #333;
+}
+
+/* Export Options */
+.export-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Clinician Info */
+.clinician-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-radius: 6px;
+}
+
+.clinician-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.clinician-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.clinician-name {
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.clinician-specialty {
+  font-size: 12px;
+  color: #6c757d;
+}
+
+/* Button Styles */
+.btn {
+  padding: 10px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  transition: all 0.2s;
+  margin-top: 10px;
+}
+
+.btn-link {
+  background: none;
+  border: none;
+  color: #3a7bd5;
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: underline;
+  padding: 0;
+}
+
+.outline-btn {
+  background: none;
+  border: 1px solid #ddd;
+  color: #555;
+}
+
+.outline-btn:hover {
+  background-color: #f8f9fa;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .dashboard-content {
+    flex-direction: column;
+  }
+  
+  .main-tiles {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-top-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  
+  .profile-language-section {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
