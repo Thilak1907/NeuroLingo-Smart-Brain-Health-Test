@@ -1,5 +1,8 @@
-import React, { useContext, useRef } from 'react';
+"use client";
+import React, { useContext, useRef, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { LanguageContext } from '../contexts/LanguageContext';
+import { UserContext } from '../contexts/UserContext';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import { jsPDF } from 'jspdf';
@@ -9,12 +12,23 @@ import '../assets/styles/results.css';
 // Register ChartJS components
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
-function Results({ results, onBackToDashboard }) {
+function Results() {
   const { t } = useContext(LanguageContext);
+  const { testResults, user } = useContext(UserContext);
+  const router = useRouter();
   const reportRef = useRef(null);
-  
+
+  useEffect(() => {
+    // If somehow landed here safely without user, we might want to redirect
+    if (!user) {
+      router.push('/');
+    }
+  }, [user, router]);
+
+  const onBackToDashboard = () => router.push('/dashboard');
+
   // Mock result data if none provided
-  const testResult = results || {
+  const testResult = testResults || {
     date: '2025-08-28',
     scores: {
       overall: 82,
@@ -25,16 +39,16 @@ function Results({ results, onBackToDashboard }) {
     },
     risk: 'low'
   };
-  
+
   // Determine risk level class for styling
   const getRiskClass = (score) => {
     if (score >= 80) return 'low-risk';
     if (score >= 60) return 'moderate-risk';
     return 'high-risk';
   };
-  
+
   const riskClass = getRiskClass(testResult.scores.overall);
-  
+
   // Prepare chart data
   const chartData = {
     labels: [t('memory'), t('attention'), t('language'), t('visuospatial')],
@@ -114,18 +128,18 @@ function Results({ results, onBackToDashboard }) {
     const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
-  
+
   // Function to download PDF
   const downloadPDF = async () => {
     if (!reportRef.current) return;
-    
+
     try {
       // Show loading indicator
       const loadingElement = document.createElement('div');
       loadingElement.className = 'pdf-loading';
       loadingElement.textContent = t('generatingPdf');
       document.body.appendChild(loadingElement);
-      
+
       // Create PDF
       const canvas = await html2canvas(reportRef.current, {
         scale: 2,
@@ -133,7 +147,7 @@ function Results({ results, onBackToDashboard }) {
         useCORS: true,
         backgroundColor: '#ffffff'
       });
-      
+
       const imgData = canvas.toDataURL('image/png');
       const pdf = new jsPDF('p', 'mm', 'a4');
       const pdfWidth = pdf.internal.pageSize.getWidth();
@@ -142,27 +156,27 @@ function Results({ results, onBackToDashboard }) {
       const imgHeight = canvas.height;
       const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
       const imgX = (pdfWidth - imgWidth * ratio) / 2;
-      
+
       // Add NeuroLingo header
       pdf.setFillColor(59, 123, 213);
       pdf.rect(0, 0, pdfWidth, 20, 'F');
       pdf.setFontSize(16);
       pdf.setTextColor(255, 255, 255);
       pdf.text('NeuroLingo - ' + t('brainHealthTest'), 10, 13);
-      
+
       // Add the captured image
       pdf.addImage(imgData, 'PNG', imgX, 25, imgWidth * ratio, imgHeight * ratio);
-      
+
       // Add footer
       const today = new Date().toLocaleDateString();
       pdf.setFontSize(10);
       pdf.setTextColor(100, 100, 100);
       pdf.text(`${t('generatedOn')}: ${today}`, 10, pdfHeight - 10);
       pdf.text('© NeuroLingo', pdfWidth - 25, pdfHeight - 10);
-      
+
       // Save the PDF
       pdf.save(`NeuroLingo-Results-${formatDate(testResult.date).replace(/\//g, '-')}.pdf`);
-      
+
       // Remove loading indicator
       document.body.removeChild(loadingElement);
     } catch (error) {
@@ -175,74 +189,74 @@ function Results({ results, onBackToDashboard }) {
     <div className="results-container">
       <div className="results-header">
         <h1>{t('myTestResults')}</h1>
-        <button 
-          className="back-btn" 
+        <button
+          className="back-btn"
           onClick={onBackToDashboard}
         >
           {t('backToDashboard')}
         </button>
       </div>
-      
+
       <div className="report-content" ref={reportRef}>
         <div className="test-info">
           <h2>{t('brainHealthTest')}</h2>
           <div className="test-date">{formatDate(testResult.date)}</div>
         </div>
-        
+
         <div className="results-summary">
           <div className="overall-score-section">
             <div className={`score-circle ${riskClass}`}>
               <div className="score-value">{testResult.scores.overall}</div>
             </div>
             <div className="risk-level">
-              {testResult.risk === 'low' ? t('lowRisk') : 
-               testResult.risk === 'moderate' ? t('moderateRisk') : t('highRisk')}
+              {testResult.risk === 'low' ? t('lowRisk') :
+                testResult.risk === 'moderate' ? t('moderateRisk') : t('highRisk')}
             </div>
           </div>
-          
+
           <div className="cognitive-domains">
             <div className="domain-scores">
               <div className="domain-row">
                 <div className="domain-label">{t('memory')}</div>
                 <div className="score-bar-container">
-                  <div 
-                    className="score-bar memory" 
+                  <div
+                    className="score-bar memory"
                     style={{ width: `${testResult.scores.memory}%` }}
                   >
                     <span className="score-percentage">{testResult.scores.memory}%</span>
                   </div>
                 </div>
               </div>
-              
+
               <div className="domain-row">
                 <div className="domain-label">{t('attention')}</div>
                 <div className="score-bar-container">
-                  <div 
-                    className="score-bar attention" 
+                  <div
+                    className="score-bar attention"
                     style={{ width: `${testResult.scores.attention}%` }}
                   >
                     <span className="score-percentage">{testResult.scores.attention}%</span>
                   </div>
                 </div>
               </div>
-              
+
               <div className="domain-row">
                 <div className="domain-label">{t('language')}</div>
                 <div className="score-bar-container">
-                  <div 
-                    className="score-bar language" 
+                  <div
+                    className="score-bar language"
                     style={{ width: `${testResult.scores.language}%` }}
                   >
                     <span className="score-percentage">{testResult.scores.language}%</span>
                   </div>
                 </div>
               </div>
-              
+
               <div className="domain-row">
                 <div className="domain-label">{t('visuospatial')}</div>
                 <div className="score-bar-container">
-                  <div 
-                    className="score-bar visuospatial" 
+                  <div
+                    className="score-bar visuospatial"
                     style={{ width: `${testResult.scores.visuospatial}%` }}
                   >
                     <span className="score-percentage">{testResult.scores.visuospatial}%</span>
@@ -252,30 +266,30 @@ function Results({ results, onBackToDashboard }) {
             </div>
           </div>
         </div>
-        
+
         <div className="chart-section">
           <h3>{t('domainComparison')}</h3>
           <div className="chart-container">
             <Bar data={chartData} options={chartOptions} height={280} />
           </div>
         </div>
-        
+
         <div className="interpretation">
           <h3>{t('resultInterpretation')}</h3>
           <p>
-            {testResult.scores.overall >= 80 
-              ? t('highScoreInterpretation') 
-              : testResult.scores.overall >= 60 
-              ? t('moderateScoreInterpretation')
-              : t('lowScoreInterpretation')}
+            {testResult.scores.overall >= 80
+              ? t('highScoreInterpretation')
+              : testResult.scores.overall >= 60
+                ? t('moderateScoreInterpretation')
+                : t('lowScoreInterpretation')}
           </p>
-          
+
           {testResult.scores.memory < 70 && (
             <div className="recommendation">
               <strong>{t('memoryRecommendation')}</strong>
             </div>
           )}
-          
+
           {testResult.scores.attention < 70 && (
             <div className="recommendation">
               <strong>{t('attentionRecommendation')}</strong>
@@ -283,10 +297,10 @@ function Results({ results, onBackToDashboard }) {
           )}
         </div>
       </div>
-      
+
       <div className="results-actions">
-        <button 
-          className="btn primary-btn" 
+        <button
+          className="btn primary-btn"
           onClick={downloadPDF}
         >
           <i className="download-icon"></i>

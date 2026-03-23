@@ -1,0 +1,3 @@
+module.exports=[6764,a=>{a.n(a.i(70813))},5292,a=>{a.n(a.i(69137))},80755,a=>{a.n(a.i(88978))},60400,a=>{a.n(a.i(19845))},4167,a=>{a.n(a.i(79454))},19845,(a,b,c)=>{"use strict";Object.defineProperty(c,"__esModule",{value:!0}),Object.defineProperty(c,"default",{enumerable:!0,get:function(){return f}});let d=a.r(37368),e=a.r(99609);function f(){return(0,d.jsx)(e.HTTPAccessErrorFallback,{status:401,message:"You're not authorized to access this page."})}("function"==typeof c.default||"object"==typeof c.default&&null!==c.default)&&void 0===c.default.__esModule&&(Object.defineProperty(c.default,"__esModule",{value:!0}),Object.assign(c.default,c),b.exports=c.default)}];
+
+//# sourceMappingURL=Desktop_Projects_Neuro-lingo_neurolingo-brain-health-test_49000052._.js.map

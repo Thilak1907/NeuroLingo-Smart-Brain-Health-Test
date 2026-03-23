@@ -1,9 +1,10 @@
+"use client";
 import React, { useContext } from 'react';
 import { LanguageContext } from '../contexts/LanguageContext';
 
 function Footer() {
   const { t } = useContext(LanguageContext);
-  
+
   return (
     <footer className="footer">
       <div className="footer-content">

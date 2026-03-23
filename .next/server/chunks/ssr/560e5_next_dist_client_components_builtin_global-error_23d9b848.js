@@ -1,0 +1,3 @@
+module.exports=[45712,(a,b,c)=>{let{createClientModuleProxy:d}=a.r(19916);a.n(d("[project]/Desktop/Projects/Neuro-lingo/neurolingo-brain-health-test/node_modules/next/dist/client/components/builtin/global-error.js <module evaluation>"))},58194,(a,b,c)=>{let{createClientModuleProxy:d}=a.r(19916);a.n(d("[project]/Desktop/Projects/Neuro-lingo/neurolingo-brain-health-test/node_modules/next/dist/client/components/builtin/global-error.js"))},79454,a=>{"use strict";a.i(45712);var b=a.i(58194);a.n(b)}];
+
+//# sourceMappingURL=560e5_next_dist_client_components_builtin_global-error_23d9b848.js.map

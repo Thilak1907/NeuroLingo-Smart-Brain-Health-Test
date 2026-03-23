@@ -1,14 +1,15 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { LanguageContext } from '../contexts/LanguageContext';
 import MemoryTest from '../tests/MemoryTest';
 import AttentionTest from '../tests/AttentionTest';
 import LanguageTest from '../tests/LanguageTest';
 import VisuospatialTest from '../tests/VisuospatialTest';
 import ProblemSolvingTest from '../tests/ProblemSolvingTest';
+import { ttsEngine } from '../services/voiceService';
 import '../assets/styles/cognitive-tests.css';
 
 function TestContainer({ onTestComplete, onCancel }) {
-  const { t } = useContext(LanguageContext);
+  const { t, language } = useContext(LanguageContext);
   const [currentStep, setCurrentStep] = useState('intro'); // 'intro', 'memory', 'attention', 'visuospatial', 'language', 'problem-solving', 'results' results
   const [consent, setConsent] = useState(false);
 
@@ -20,6 +21,32 @@ function TestContainer({ onTestComplete, onCancel }) {
     visuospatial: null,
     problemSolving: null
   });
+
+  // Dictate the instructions when the step changes
+  useEffect(() => {
+    let textToSpeak = '';
+    if (currentStep === 'intro') {
+      textToSpeak = t('assessment_description', 'This test will assess multiple cognitive domains through a series of simple tasks');
+    } else if (currentStep === 'memory') {
+      textToSpeak = t('memory_instruction_1', 'You will be shown a list of words to memorize for 30 seconds.');
+    } else if (currentStep === 'attention') {
+      textToSpeak = t('attention_instruction', 'Please complete the attention tasks presented.');
+    } else if (currentStep === 'language') {
+      textToSpeak = t('language_instruction', 'Please complete the language tasks presented.');
+    } else if (currentStep === 'visuospatial') {
+      textToSpeak = t('visuospatial_instruction', 'Please complete the visuospatial tasks presented.');
+    } else if (currentStep === 'problemSolving') {
+      textToSpeak = t('problem_solving_instruction', 'Please complete the problem solving tasks presented.');
+    }
+
+    if (textToSpeak) {
+      ttsEngine.speak(textToSpeak, language).catch(console.error);
+    }
+
+    return () => {
+      ttsEngine.stop();
+    };
+  }, [currentStep, language, t]);
 
   // Calculate overall progress
   const calculateProgress = () => {

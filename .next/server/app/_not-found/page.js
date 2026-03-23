@@ -1,0 +1,13 @@
+var R=require("../../chunks/ssr/[turbopack]_runtime.js")("server/app/_not-found/page.js")
+R.c("server/chunks/ssr/Desktop_Projects_Neuro-lingo_neurolingo-brain-health-test_49000052._.js")
+R.c("server/chunks/ssr/[root-of-the-server]__fb256cf8._.js")
+R.c("server/chunks/ssr/560e5_next_dist_esm_build_templates_app-page_cf78469e.js")
+R.c("server/chunks/ssr/[root-of-the-server]__ad717ef3._.js")
+R.c("server/chunks/ssr/[root-of-the-server]__c29cf4fa._.js")
+R.c("server/chunks/ssr/[root-of-the-server]__44b1cfc9._.js")
+R.c("server/chunks/ssr/Desktop_Projects_Neuro-lingo_neurolingo-brain-health-test_src_731c5799._.js")
+R.c("server/chunks/ssr/560e5_next_dist_client_components_f6f27180._.js")
+R.c("server/chunks/ssr/560e5_next_dist_client_components_builtin_forbidden_240b8d18.js")
+R.c("server/chunks/ssr/4c4a6_ngo-brain-health-test__next-internal_server_app__not-found_page_actions_7cd415a5.js")
+R.m(8546)
+module.exports=R.m(8546).exports
