@@ -3,22 +3,9 @@ globalThis.__BUILD_MANIFEST = {
     "/_app": []
   },
   "devFiles": [],
-  "polyfillFiles": [
-    "static/chunks/560e5_next_dist_build_polyfills_polyfill-nomodule.js"
-  ],
+  "polyfillFiles": [],
   "lowPriorityFiles": [],
-  "rootMainFiles": [
-    "static/chunks/[turbopack]_browser_dev_hmr-client_hmr-client_ts_cd5c5a24._.js",
-    "static/chunks/560e5_next_dist_compiled_react-dom_8b07df6a._.js",
-    "static/chunks/560e5_next_dist_compiled_react-server-dom-turbopack_ad0b0a4b._.js",
-    "static/chunks/560e5_next_dist_compiled_next-devtools_index_689fa9c3.js",
-    "static/chunks/560e5_next_dist_compiled_c20b5936._.js",
-    "static/chunks/560e5_next_dist_client_036fabf4._.js",
-    "static/chunks/560e5_next_dist_a4efed93._.js",
-    "static/chunks/560e5_28f30f6f._.js",
-    "static/chunks/Desktop_Projects_Neuro-lingo_neurolingo-brain-health-test_a0ff3932._.js",
-    "static/chunks/turbopack-Desktop_Projects_Neuro-lingo_neurolingo-brain-health-test_a9bbea06._.js"
-  ]
+  "rootMainFiles": []
 };
 globalThis.__BUILD_MANIFEST.lowPriorityFiles = [
 "/static/" + process.env.__NEXT_BUILD_ID + "/_buildManifest.js",
